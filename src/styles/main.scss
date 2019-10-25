@@ -1,33 +1,16 @@
 body {
-  background: $green;
+  display: grid;
+  height: 100vh;
 }
 
 .main {
   display: grid;
 }
 
-.block {
-  display: flex;
-  width: 200px;
-  height: 200px;
-}
-
-.block-1 {
-  background: red;
-}
-
-.block-2 {
-  background: white;
-}
-
-.block-3 {
-  background: blue;
-}
-
-.block-4 {
-  background: #cccccc;
-}
-
-.image img {
-  object-fit: cover;
+.container {
+  max-width: 1400px;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin: 0 auto;
 }
