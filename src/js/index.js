@@ -8,14 +8,14 @@ $(document).ready(() => {
   
   let options = {
     strings: [
-      'Добро пожаловать на самый минималистичный в мире сайт диджитал агентства. ^2000 шутка.', 
-      'Просто он еще не заполнен. Но работа над этим ведётся.',
-      'А давать голые ссылки на работы совершенно не хочется.',
-      `Поэтому подождите <br> <span class="timer">${time}</span>`,
-      'Жаль, но нет, все таки ещё не успели заполнить', 
-      'Но вскоре это произойдёт. А пока, можете лайкнуть нас в <a href="#" target="_blank" rel="noopener noreferrer" class="fb-link">fb</a>', 
-      'Прикол, вы всё еще здесь? Вы — супер!', 
-      'Ну всё, хватит залипать. вот вам классный тречок'
+      'добро пожаловать на самый минималистичный в мире сайт диджитал агентства. ^2000 шутка.', 
+      'просто он еще не заполнен.<br> но работа над этим ведётся.',
+      'а давать голые ссылки на работы совершенно не хочется.',
+      `поэтому подождите <br> <span class="timer">${time}</span>`,
+      'жаль, но нет, все таки ещё <br> не успели заполнить', 
+      'но вскоре это произойдёт.<br> а пока, можете лайкнуть нас в <a href="#" target="_blank" rel="noopener noreferrer" class="fb-link">fb</a>', 
+      'прикол, вы всё еще здесь?<br> вы — супер!', 
+      'ну всё, хватит залипать.<br> вот вам классный тречок'
     ],
     typeSpeed: 30,
     startDelay: 1000,
@@ -24,6 +24,10 @@ $(document).ready(() => {
     loop: false,
     loopCount: 2,
     onStringTyped: function(pos, self) {
+      if (pos === 0) {
+        $('.footer').addClass('active')
+      }
+
       if ((pos === 3) && (!self.finishTimer)) {
         typed.stop()
         startTimer()
@@ -40,15 +44,15 @@ $(document).ready(() => {
 
   const startTimer = () => {
     const interval = setInterval(() => {
-      if (time === '00:00') {
-        typed.start()
-        typed.finishTimer = true
-        return clearInterval(interval)
-      }
       const timer = $('.timer')
       const timeFromHTML = Number(timer.text().split(':')[1]) - 1
       time = `00:0${timeFromHTML}`
       timer.text(time)
+      if (time === '00:01') {
+        typed.start()
+        typed.finishTimer = true
+        return clearInterval(interval)
+      }
     }, 1000)
   }
 
